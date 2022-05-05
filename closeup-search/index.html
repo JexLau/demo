@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>近音搜索</title>
+</head>
+
+<body>
+  <div>
+    <input type="text" id="input">
+    <div id="name-wrap"></div>
+  </div>
+  <script src="pinyin_match_lib/main.js"></script>
+  <script src="./source.js"></script>
+  <script>
+    // 1. 造数据 [{name: "xxx"...}] -- yes
+    // 2. 监听input事件，获取输入框的值 -- yes
+    // 3. 对比数据：
+    //    3.1 遍历数据，这里看看能不能做下缓存
+    //    3.2 把name和input.value对比
+    const input = document.getElementById("input");
+    const nameWrap = document.getElementById("name-wrap");
+
+    function setNameContent(item) {
+      const text = document.createTextNode(`${item.name}`)
+      const ele = document.createElement("div")
+      ele.appendChild(text)
+      nameWrap.append(ele)
+    }
+
+    // 生成姓名内容
+    allNames.map((item, index) => {
+      setNameContent(item)
+    })
+
+    input.oninput = function () {
+      console.time("search")
+      nameWrap.innerHTML = ""
+      allNames.map(item => {
+        const target = PinyinMatch.match(item.name, input.value)
+        if (target) {
+          setNameContent(item)
+        }
+      })
+      console.timeEnd("search")
+    }
+  </script>
+</body>
+
+</html>
