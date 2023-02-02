@@ -1,0 +1,31 @@
+{
+  "name": "side-effects",
+  "version": "1.0.0",
+  "private": true,
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "dev": "webpack",
+    "build": "webpack build --mode production"
+  },
+  "dependencies": {
+    "webpack": "^5.75.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "sideEffects": false,
+  "devDependencies": {
+    "webpack-cli": "^5.0.1"
+  }
+}
